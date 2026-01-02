@@ -1,0 +1,35 @@
+{
+  "name": "loginregistration",
+  "version": "1.0.0",
+  "description": "we are going to learn Registration and Login Api",
+  "main": "server.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aptechAli/LoginRegistration.git"
+  },
+  "keywords": [
+    "Registration",
+    "and",
+    "Login",
+    "on",
+    "NODE",
+    "JS"
+  ],
+  "author": "Syed Ali Imran Hussain",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aptechAli/LoginRegistration/issues"
+  },
+  "homepage": "https://github.com/aptechAli/LoginRegistration#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.11"
+  }
+}
