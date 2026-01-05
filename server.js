@@ -22,13 +22,9 @@ app.use(express.json());
 
 
 
-
-
-
-
 // API : http://localhost:5000/registration
 // METHOD: POST 
-// DESCRIPTION : 
+// DESCRIPTION : User Registration API
 
 app.post("/registration",async(req,res)=>{
 
@@ -54,6 +50,26 @@ app.post("/registration",async(req,res)=>{
     return res.send(newUserData)
 })
 
+
+// API : http://localhost:5000/login
+// METHOD: POST 
+// DESCRIPTION : User Login API
+
+
+app.post("/login",async(req,res)=>{
+
+    const {useremail, userpassword} = req.body;
+
+    if(!useremail || !userpassword){
+        return res.send("Kindly fill all the fields.")
+    }
+
+
+   var UserAvail =  await userDataSchema.findById("695bd3fe96f1947c5095e1cc");
+
+    return res.send(UserAvail)
+
+})
 
 
 
