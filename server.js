@@ -7,6 +7,14 @@ import express from 'express'
 // password hashing package
 import bcrypt from 'bcryptjs';
 
+
+// Database connectivity
+import ConnectDB from './DB/ConnectionDB.js';
+
+
+// Model
+import userDataSchema from './Model/UserModel.js';
+
 const app = express();
 
 
@@ -30,13 +38,18 @@ app.post("/registration",async(req,res)=>{
     
     var hashpass = await bcrypt.hash(userpass,Salt)
   
+    if(!username || !useremail || !userpass ){
+        return res.send("All Fields need to fill !!");
+    }
+
     var newUserData = {
         username,
         useremail,
        userpass: hashpass
     }
 
-
+// -- mongo tak jaiga data save hunekelie
+    await userDataSchema.create(newUserData)
 
     return res.send(newUserData)
 })
@@ -49,5 +62,6 @@ app.post("/registration",async(req,res)=>{
 // Listen
 
 app.listen(5000,()=>{
+    ConnectDB();
     console.log("Server is running Successfully !")
 })
