@@ -65,15 +65,14 @@ app.post("/login",async(req,res)=>{
     }
 
 
-   var UserAvail =  await userDataSchema.find({useremail});
+   var UserAvail =  await userDataSchema.findOne({useremail});
 
 
-  
-    // if(!UserAvail.useremail){
-    // return res.send("Something Went Wrong !"); 
-    // }
+    if(!UserAvail){
+    return res.send("Something Went Wrong !"); 
+    }
 
-    var DB_PASS = UserAvail[0].userpass;
+    var DB_PASS = UserAvail.userpass;
 
 
     var ValidORNote = await bcrypt.compare( userpassword ,DB_PASS);
@@ -82,7 +81,7 @@ app.post("/login",async(req,res)=>{
         return res.send("Something Went Wrong !");  
     }
 
-    return res.send("Account Login Successfully !!")
+    return res.send("Acount login Successfully !!")
 
 })
 
