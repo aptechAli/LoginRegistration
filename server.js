@@ -65,9 +65,24 @@ app.post("/login",async(req,res)=>{
     }
 
 
-   var UserAvail =  await userDataSchema.findById("695bd3fe96f1947c5095e1cc");
+   var UserAvail =  await userDataSchema.find({useremail});
 
-    return res.send(UserAvail)
+
+  
+    // if(!UserAvail.useremail){
+    // return res.send("Something Went Wrong !"); 
+    // }
+
+    var DB_PASS = UserAvail[0].userpass;
+
+
+    var ValidORNote = await bcrypt.compare( userpassword ,DB_PASS);
+
+    if(!ValidORNote){
+        return res.send("Something Went Wrong !");  
+    }
+
+    return res.send("Account Login Successfully !!")
 
 })
 
